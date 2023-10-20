@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="contactSectionWrapper">
+      <section class="createContactWrap">
+        <h2>Skapa ny kontakt</h2>
+        <div id="inputFlex">
+          <input id="namn" type="text" placeholder="Namn" />
+          <input id="nummer" type="text" placeholder="Telefon" />
+          <button id="skapaKontakt">Skapa</button>
+        </div>
+
+        <div id="errorText" style="color: red"></div>
+      </section>
+
+      <section class="contactList">
+        <h2>Kontaktlista</h2>
+        <div id="contactsFlex">
+          <ol id="contacts">
+            <!-- Sätt in genom JS -->
+          </ol>
+        </div>
+      </section>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
