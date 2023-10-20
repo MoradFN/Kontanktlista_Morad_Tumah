@@ -17,9 +17,9 @@ createContactBtn.addEventListener("click", function () {
     myContactsArray.push({ namn, nummer });
     errorText.innerText = "";
 
-    createContactList();
+    generateContactList();
   } else {
-    errorText.innerText = "Both fields are required.";
+    errorText.innerText = "Fyll i båda fälten.";
   }
 });
 
@@ -29,7 +29,7 @@ clearContactsBtn.addEventListener("click", function () {
   clearContactsBtn.remove();
 });
 
-function createContactList() {
+function generateContactList() {
   contacts.innerHTML = "";
 
   for (let i = 0; i < myContactsArray.length; i++) {
@@ -41,7 +41,7 @@ function createContactList() {
 
     deleteBtn.onclick = function () {
       myContactsArray.splice(i, 1);
-      createContactList();
+      generateContactList();
     };
     editBtn.onclick = function () {
       namn = document.getElementById(`newName${[i]}`);
@@ -52,12 +52,20 @@ function createContactList() {
         nummer.disabled = false;
         editBtn.innerText = "Spara";
       } else if (editBtn.innerText === "Spara") {
-        myContactsArray[i].namn = namn.value;
-        myContactsArray[i].nummer = nummer.value;
+        if (namn.value.length > 0 && nummer.value.length > 0) {
+          myContactsArray[i].namn = namn.value;
+          myContactsArray[i].nummer = nummer.value;
+          generateContactList();
 
-        createContactList();
+          errorElement.innerText = "";
+        } else {
+          errorElement.innerText = "Kan ej spara tomma fält";
+        }
       }
     };
+    let errorElement = document.createElement("p");
+    errorElement.classList.add("editError");
+    errorElement.id = `newErrorfield${[i]}`;
 
     let createList = document.createElement("li");
     createList.classList.add("newContact");
@@ -84,5 +92,6 @@ function createContactList() {
     createList.appendChild(nummberLabel);
     createList.appendChild(deleteBtn);
     createList.appendChild(editBtn);
+    createList.appendChild(errorElement);
   }
 }

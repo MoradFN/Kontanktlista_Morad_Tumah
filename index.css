@@ -3,6 +3,11 @@ body {
   justify-content: center;
   background-color: aqua;
 }
+.editError {
+  margin: 0px 0px 0px 15px;
+  color: red;
+  font-size: 12px;
+}
 .contactSectionWrapper {
   display: flex;
   flex-direction: column;
